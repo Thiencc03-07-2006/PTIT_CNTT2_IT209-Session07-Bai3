@@ -1,0 +1,16 @@
+[Unit]
+Description=Spring Boot Application
+After=network.target mysql.service
+Requires=mysql.service
+
+[Service]
+Type=simple
+User=spring-runner
+WorkingDirectory=/opt/spring-app
+ExecStart=/usr/bin/java -jar /opt/spring-app/app.jar
+Environment="SERVER_PORT=8082"
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
